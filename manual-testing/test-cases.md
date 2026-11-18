@@ -1,0 +1,12 @@
+# Manual Test Cases — SauceDemo
+
+| Test ID | Module | Test Scenario | Pre-conditions | Test Steps | Test Data | Expected Result | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC-01** | Login | Valid user login (Positive) | User is on login page | 1. Enter valid username<br>2. Enter valid password<br>3. Click Login | User: `standard_user`<br>Pass: `secret_sauce` | User is redirected to `/inventory.html` and product list is displayed. | Pass |
+| **TC-02** | Login | Locked-out user login (Negative) | User is on login page | 1. Enter locked username<br>2. Enter valid password<br>3. Click Login | User: `locked_out_user`<br>Pass: `secret_sauce` | Login fails; error message *"Epic sadface: Sorry, this user has been locked out."* appears. | Pass |
+| **TC-03** | Login | Invalid password (Negative) | User is on login page | 1. Enter valid username<br>2. Enter wrong password<br>3. Click Login | User: `standard_user`<br>Pass: `wrong_pass123` | Login fails; error message *"Username and password do not match any user in this service"* appears. | Pass |
+| **TC-04** | Login | Empty credentials (Boundary) | User is on login page | 1. Leave username blank<br>2. Leave password blank<br>3. Click Login | User: `""`<br>Pass: `""` | Validation error *"Epic sadface: Username is required"* is displayed. | Pass |
+| **TC-05** | Cart | Add single item to cart | Logged in as `standard_user` | 1. Click "Add to cart" on Sauce Labs Backpack<br>2. Check cart badge icon | Item: Sauce Labs Backpack | Button changes to "Remove" and shopping cart badge updates to `1`. | Pass |
+| **TC-06** | Cart | Remove item from cart | 1 item is in the cart | 1. Click "Remove" button on item<br>2. Check cart badge icon | Item: Sauce Labs Backpack | Item is removed and cart badge disappears. | Pass |
+| **TC-07** | Checkout | Complete checkout with valid details | 1 item in cart, on Checkout Step One | 1. Enter First Name, Last Name, Postal Code<br>2. Click Continue<br>3. Click Finish | First: `Ahmad`<br>Last: `Zaki`<br>Zip: `50000` | Order confirmation page displays *"Thank you for your order!"*. | Pass |
+| **TC-08** | Checkout | Checkout with missing Postal Code (Negative) | 1 item in cart, on Checkout Step One | 1. Enter First & Last Name<br>2. Leave Postal Code empty<br>3. Click Continue | First: `Ahmad`<br>Last: `Zaki`<br>Zip: `""` | Checkout blocked; error *"Error: Postal Code is required"* is displayed. | Pass |
